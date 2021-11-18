@@ -1,0 +1,5 @@
+/Users/nikitarehemae/CLionProjects/photoslider/cmake-build-megaatmega2560/CMakeFiles/rebuild_cache.dir
+/Users/nikitarehemae/CLionProjects/photoslider/cmake-build-megaatmega2560/CMakeFiles/edit_cache.dir
+/Users/nikitarehemae/CLionProjects/photoslider/cmake-build-megaatmega2560/CMakeFiles/Z_DUMMY_TARGET.dir
+/Users/nikitarehemae/CLionProjects/photoslider/cmake-build-megaatmega2560/CMakeFiles/Debug.dir
+/Users/nikitarehemae/CLionProjects/photoslider/cmake-build-megaatmega2560/CMakeFiles/Production.dir

@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/Chrono/Chrono.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/Chrono/LightChrono.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/IRremote/examples/IRremoteExtensionTest/IRremoteExtensionClass.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/Keypad/src/Key.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/Keypad/src/Keypad.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/LiquidCrystal_I2C/LiquidCrystal_I2C.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_MAX72XX/examples/MD_MAX72xx_Eyes/MD_EyePair.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_MAX72XX/examples/MD_MAX72xx_RobotEyes/MD_RobotEyes.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_MAX72XX/src/MD_MAX72xx.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_MAX72XX/src/MD_MAX72xx_buf.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_MAX72XX/src/MD_MAX72xx_font.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_MAX72XX/src/MD_MAX72xx_pix.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_PZone.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Blinds.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Close.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Diag.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Dissolve.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Fade.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Grow.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_HScroll.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Mesh.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Open.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Print.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Random.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Scan.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Slice.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Sprite.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_VScroll.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/MD_Parola/src/MD_Parola_Wipe.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/megaatmega2560/NewPing/src/NewPing.cpp.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/src/main.cpp.obj"
+  "Z_DUMMY_TARGET"
+  "Z_DUMMY_TARGET.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/Z_DUMMY_TARGET.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
