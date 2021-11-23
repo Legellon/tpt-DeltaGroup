@@ -72,6 +72,9 @@ byte ToNearEdge(uint32_t velocity) {
       Successful = 0, Failure = 1
   };
 
+  States prev_state = state; //Remember original state
+  state = States::ToNearEdge; //Change a state on the state of function
+
   //By default, is left direction
   //False == left direction; True == right direction
   bool direction = false;
@@ -90,7 +93,9 @@ byte ToNearEdge(uint32_t velocity) {
   if (rightDistance < leftDistance) {
       direction = true; //Change direction if a right edge is closer
   }
-  byte exec_code = ToEdge(direction);
+  byte exec_code = ToEdge(direction); //Start move to the near edge in the chosen direction
+
+  state = prev_state; //Revert to the original state before calling the function
 
   if (exec_code == 0) return Status::Failure;
   return Status::Successful;
@@ -113,6 +118,7 @@ void setup() {
   pinMode(ECHO_PIN_R, INPUT);
 
   //init state mode
+  state = States::Released;
 }
 
 void loop() {
