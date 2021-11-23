@@ -70,7 +70,7 @@ byte ToNearEdge(uint32_t velocity) {
   bool direction = false;
 
   while (velocity <= 0) { //If a user of the function used zero for the value of velocity
-      //Send request --> Output message on displays + Input form devices
+      //Send request --> Output message on displays + Input from devices
       //Wait while a user input a number
       uint32_t valueFromUser = 5; //mockup
       
