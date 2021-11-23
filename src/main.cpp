@@ -47,11 +47,18 @@ char keys[KEYPAD_ROWS][KEYPAD_COLS] = {
 static byte rowPins[KEYPAD_ROWS] { 23, 25, 27, 29 }; //The row pin outs of the keypad
 static byte colPins[KEYPAD_COLS] { 31, 33, 35, 37 }; //The col pin outs of the keypad
 
+enum class States: byte {
+    Released,
+    FatalError,
+    ToNearEdge,
+    ToEdge,
+};
+
 Keypad keypad(makeKeymap(keys), rowPins, colPins, KEYPAD_ROWS, KEYPAD_COLS);    //Keypad
 LiquidCrystal_I2C lcd(0x27, 16, 2);                   //LCD display
 NewPing LS(TRIG_PIN_L, ECHO_PIN_L);                                             //Left ultrasonic
 NewPing RS(TRIG_PIN_R, ECHO_PIN_R);                                             //Right ultrasonic
-//State state = {State::Released};                                              //Global state of program (?)
+States state;                                                                   //Global state of program (?)
 
 
 byte ToEdge(bool direction, bool mockup = true) {
@@ -59,7 +66,6 @@ byte ToEdge(bool direction, bool mockup = true) {
     byte exec_code = mockup ? 0 : 1;
     return exec_code;
 }
-
 
 byte ToNearEdge(uint32_t velocity) {
   enum Status: byte { //All planned outs from the function
@@ -74,7 +80,7 @@ byte ToNearEdge(uint32_t velocity) {
       //Send request --> Output message on displays + Input from devices
       //Wait while a user input a number
       uint32_t valueFromUser = 5; //mockup
-      
+
       velocity = valueFromUser;
   }
 
@@ -87,90 +93,8 @@ byte ToNearEdge(uint32_t velocity) {
   byte exec_code = ToEdge(direction);
 
   if (exec_code == 0) return Status::Failure;
-
   return Status::Successful;
 }
-
-
-
-
-class State {
-public: //methods
-    enum class type: byte {
-        Released,
-        FatalError,
-        ToNearEdge,
-        ToEdge,
-    };
-
-    State() = default;
-
-    type current;
-
-    void init() {
-        current = type::Released;
-        previous = current;
-    }
-
-    void take(type task) {
-        previous = current;
-        current = task;
-    }
-
-    void release() {
-        type temp = current;
-        current = previous;
-        previous = temp;
-    }
-
-private:
-    type previous;
-
-};
-
-
-//prototype
-class StateController {
-public:
-    static byte execute(State *state, State::type task) {
-        state->take(task);
-
-
-
-        state->release();
-    }
-
-private:
-};
-
-
-//prototype
-class DisplayController {
-public:
-    DisplayController() = default;
-
-    void OutputHeaderMessage() {}
-
-private:
-//    const char *Messages[] {
-//            "Input a velocity of the platform:",
-//            "The platform is moving to the destination...",
-//    };
-    enum MessageID: byte;
-
-};
-
-//prototype
-class InputController {
-public:
-    InputController() = default;
-
-    template<class Type> Type GetNumber() {}
-
-private:
-
-
-};
 
 void setup() {
   // put your setup code here, to run once:
