@@ -37,10 +37,8 @@
 #define TRIG_PIN_R 39
 #define ECHO_PIN_R 41
 
-
-//---InitSection---
-
-static char keys[KEYPAD_ROWS][KEYPAD_COLS] = {  //Init keys for the keypad
+//init
+char keys[KEYPAD_ROWS][KEYPAD_COLS] = {
   {'1', '2', '3', 'A'},
   {'4', '5', '6', 'B'},
   {'7', '8', '9', 'C'},
