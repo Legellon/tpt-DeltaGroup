@@ -70,10 +70,10 @@ byte ToNearEdge(float velocity) {
   bool direction = false;
 
   while (velocity <= 0) { //If a user of the function used zero for the value of velocity
-      //Send request for output message on displays
-      //Get a number from the user through input devices
+      //Send request --> Output message on displays + Input form devices
+      //Wait while a user input a number
 
-      velocity = 10; //mockup
+      velocity = 1; //example
   }
 
   uint64_t leftDistance = LS.ping_cm(); //Get the distance to the left edge
