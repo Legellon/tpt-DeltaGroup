@@ -54,14 +54,15 @@ NewPing RS(TRIG_PIN_R, ECHO_PIN_R);                                             
 //State state = {State::Released};                                              //Global state of program (?)
 
 
-byte ToEdge(bool direction) {
+byte ToEdge(bool direction, bool mockup = true) {
     //do some stuff
-    return 0;
+    byte exec_code = mockup ? 0 : 1;
+    return exec_code;
 }
 
 
 byte ToNearEdge(uint32_t velocity) {
-  enum Status: byte {
+  enum Status: byte { //All planned outs from the function
       Successful = 0, Failure = 1
   };
 
@@ -69,7 +70,7 @@ byte ToNearEdge(uint32_t velocity) {
   //False == left direction; True == right direction
   bool direction = false;
 
-  while (velocity <= 0) { //If a user of the function used zero for the value of velocity
+  while (velocity == 0) { //If a user of the function used zero for the value of velocity
       //Send request --> Output message on displays + Input from devices
       //Wait while a user input a number
       uint32_t valueFromUser = 5; //mockup
