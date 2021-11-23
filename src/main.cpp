@@ -60,7 +60,7 @@ byte ToEdge(bool direction) {
 }
 
 
-byte ToNearEdge(float velocity) {
+byte ToNearEdge(uint32_t velocity) {
   enum Status: byte {
       Successful = 0, Failure = 1
   };
@@ -72,8 +72,9 @@ byte ToNearEdge(float velocity) {
   while (velocity <= 0) { //If a user of the function used zero for the value of velocity
       //Send request --> Output message on displays + Input form devices
       //Wait while a user input a number
-
-      velocity = 1; //example
+      uint32_t valueFromUser = 5; //mockup
+      
+      velocity = valueFromUser;
   }
 
   uint64_t leftDistance = LS.ping_cm(); //Get the distance to the left edge
