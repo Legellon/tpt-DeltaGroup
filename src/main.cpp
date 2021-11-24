@@ -55,7 +55,7 @@ enum class States: byte {
 };
 
 Keypad keypad(makeKeymap(keys), rowPins, colPins, KEYPAD_ROWS, KEYPAD_COLS);    //Keypad
-LiquidCrystal_I2C lcd(0x27, 16, 2);                   //LCD display
+LiquidCrystal_I2C lcd(0x27, 16, 2);                                             //LCD display
 NewPing LS(TRIG_PIN_L, ECHO_PIN_L);                                             //Left ultrasonic
 NewPing RS(TRIG_PIN_R, ECHO_PIN_R);                                             //Right ultrasonic
 States state;                                                                   //Global state of program (?)
@@ -79,7 +79,7 @@ byte ToNearEdge(uint32_t velocity) {
   //False == left direction; True == right direction
   bool direction = false;
 
-  while (velocity == 0) { //If a user of the function used zero for the value of velocity
+  while (velocity == 0) { //If a user of the function used 0 for the value of velocity
       //Send request --> Output message on displays + Input from devices
       //Wait while a user input a number
       uint32_t valueFromUser = 5; //mockup
@@ -122,5 +122,34 @@ void setup() {
 }
 
 void loop() {
-    byte exec_code = ToNearEdge(0);
+//    unsigned long left = LS.ping_cm();
+//    unsigned long right = RS.ping_cm();
+//
+//    bool direction = false;
+//
+//    Serial.print("LS = ");
+//    Serial.print(left);
+//    Serial.print(" RS = ");
+//    Serial.print(right);
+//    Serial.println();
+//
+//    if(right > left) {
+//        direction = true;
+//    }
+//
+//    Serial.println(direction);
+//
+//    delay(2000);
+    if (keypad.getKeys())
+    {
+        for (int i=0; i<LIST_MAX; i++)   // Scan the whole key list.
+        {
+            if ( keypad.key[i].stateChanged )   // Only find keys that have changed state.
+            {
+                Serial.print("Key ");
+                Serial.print(keypad.key[i].kchar);
+                Serial.println();
+            }
+        }
+    }
 }

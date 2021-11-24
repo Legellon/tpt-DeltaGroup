@@ -28,6 +28,7 @@ if (CMAKE_BUILD_TYPE MATCHES "megaatmega2560")
 
     include_directories("${CMAKE_CURRENT_LIST_DIR}/include")
     include_directories("${CMAKE_CURRENT_LIST_DIR}/src")
+    include_directories("${CMAKE_CURRENT_LIST_DIR}/.pio/libdeps/megaatmega2560/Stepper/src")
     include_directories("${CMAKE_CURRENT_LIST_DIR}/.pio/libdeps/megaatmega2560/NewPing/src")
     include_directories("${CMAKE_CURRENT_LIST_DIR}/.pio/libdeps/megaatmega2560/Chrono")
     include_directories("${CMAKE_CURRENT_LIST_DIR}/.pio/libdeps/megaatmega2560/LiquidCrystal_I2C")
