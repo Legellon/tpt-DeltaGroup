@@ -1,16 +1,17 @@
-#include <Arduino.h>
+//#include <Arduino.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
-#include <Keypad.h>
-#include <MD_Parola.h>
+//#include <Keypad.h>
+//#include <MD_Parola.h>
 #include <MD_MAX72xx.h>
-#include <SPI.h>
-#include <IRremote.h>
+//#include <SPI.h>
+//#include <IRremote.h>
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 void setup() {
   // init lcd
+  lcd.init();
   lcd.begin(16, 2);
   // turn on the backlight
   lcd.backlight();
