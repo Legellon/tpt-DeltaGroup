@@ -1,27 +1,23 @@
-//#include <Arduino.h>
+//#include <iostream>
+#include <Arduino.h>
 #include <Wire.h>
+#include <MD_MAX72xx.h>
 #include <LiquidCrystal_I2C.h>
+#include "DisplayClass.cpp"
 //#include <Keypad.h>
 //#include <MD_Parola.h>
-#include <MD_MAX72xx.h>
 //#include <SPI.h>
 //#include <IRremote.h>
 
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+LiquidCrystal_I2C LCD(0x27, 16, 2);
 
-void setup() {
-  // init lcd
-  lcd.init();
-  lcd.begin(16, 2);
-  // turn on the backlight
-  lcd.backlight();
+DisplayClass dc(&LCD);
+
+void setup()
+{
+    int len = dc.DisplayMessage(0);
 }
 
-void loop() {
-  // clear lcd
-  lcd.clear();
-  // set cursor to the begining of the lcd
-  lcd.setCursor(0, 1);
-  // print message
-  lcd.print("Hello");
+void loop()
+{
 }
