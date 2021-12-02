@@ -14,16 +14,14 @@ typedef enum: uint8_t {
     Successful, Failure,
 } UnsafeTask;
 
-//Negative == Left direction; Positive == Right direction
-typedef enum: bool {
-    Negative, Positive
+typedef enum: uint8_t {
+    Left, Right, Unknown
 } Direction;
-
 
 class ExecutionMessage {
 public:
     TaskType type;
-    
+
 protected:
     void* args[MAX_ARGS_LENGTH];
 };
@@ -36,11 +34,10 @@ public:
     }
 
     uint16_t velocity() {
-        return *(uint16_t *)args[0];
+        return *((uint16_t *)(args[0]));
     }
 };
 
-//example
 class ToEdgeMessage : public ExecutionMessage {
 public:
     ToEdgeMessage(uint16_t* velocity, Direction* direction) : ExecutionMessage() {
@@ -50,11 +47,11 @@ public:
     }
 
     uint16_t velocity() {
-        return *(uint16_t *)args[0];
+        return *((uint16_t *)(args[0]));
     }
 
     Direction direction() {
-        return *(Direction *)args[1];
+        return *((Direction *)(args[1]));
     }
 };
 

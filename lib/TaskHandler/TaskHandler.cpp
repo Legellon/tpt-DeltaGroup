@@ -10,6 +10,14 @@ TaskHandler::TaskHandler(NewPing* leftSonar, NewPing* rightSonar) {
     rs = rightSonar;
 }
 
+TaskHandler::~TaskHandler() {
+    delete globalState;
+}
+
+void TaskHandler::init() {
+    startTime = millis();
+}
+
 UnsafeTask TaskHandler::Execute(ExecutionMessage* message) {
     TaskType task = message->type;
     globalState->Take(task);
@@ -17,7 +25,7 @@ UnsafeTask TaskHandler::Execute(ExecutionMessage* message) {
     UnsafeTask exec_code = Successful;
     switch (task) {
         case ::ToNearEdge: {
-            auto* serializedMessage = (ToNearEdgeMessage *)message;
+            auto serializedMessage = (ToNearEdgeMessage *) message;
 
             uint16_t velocity = serializedMessage->velocity();
 
@@ -26,7 +34,7 @@ UnsafeTask TaskHandler::Execute(ExecutionMessage* message) {
         }
 
         case ::ToEdge: {
-            auto* serializedRequest = (ToEdgeMessage *)message;
+            auto serializedRequest = (ToEdgeMessage *) message;
 
             uint16_t velocity = serializedRequest->velocity();
             Direction direction = serializedRequest->direction();
@@ -50,7 +58,7 @@ UnsafeTask TaskHandler::Execute(ExecutionMessage* message) {
 
 UnsafeTask TaskHandler::ToNearEdge(uint16_t velocity) {
     //By default, is left direction
-    Direction direction = Negative;
+    Direction direction = Left;
 
     while (velocity == 0) { //If a user of the function used 0 for the value of velocity
         //Send request --> Output message on displays + Input from devices
@@ -65,7 +73,7 @@ UnsafeTask TaskHandler::ToNearEdge(uint16_t velocity) {
     uint64_t rightDistance = rs->ping_cm(); //Get the distance to the right edge
 
     if (rightDistance < leftDistance) {
-        direction = Positive; //Change direction if the right edge is closer
+        direction = Right; //Change direction if the right edge is closer
     }
     ToEdgeMessage makeMoveRequest(&velocity, &direction); //Prepare task to the near edge in chosen direction
     UnsafeTask exec_code = Execute(&makeMoveRequest); //Execute the task
@@ -74,14 +82,6 @@ UnsafeTask TaskHandler::ToNearEdge(uint16_t velocity) {
 }
 
 UnsafeTask TaskHandler::ToEdge(uint16_t velocity, Direction direction) {
-    if (direction == Negative) return Successful;
+    if (direction == Left) return Successful;
     return Failure;
-}
-
-void TaskHandler::init() {
-    startTime = millis();
-}
-
-TaskHandler::~TaskHandler() {
-    delete [] globalState;
 }
