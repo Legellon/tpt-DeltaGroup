@@ -80,7 +80,7 @@ Executable TaskHandler::ToEdge(int16_t velocity) {
 
     workingSonic = direction == Left ? leftSonic : rightSonic;
 
-    uint64_t distance;
+    uint16_t distance;
     do { //Movement
         stepper->step(velocity);
         distance = workingSonic->ping_cm();
@@ -91,27 +91,16 @@ Executable TaskHandler::ToEdge(int16_t velocity) {
 
 Executable TaskHandler::ToNearEdge(int16_t velocity) {
     Executable exec_code = Successful;
+
+    uint16_t leftDistance = leftSonic->ping_cm(); //Get the distance to the left edge
+    uint16_t rightDistance = rightSonic->ping_cm(); //Get the distance to the right edge
+
     velocity = abs(velocity);
-
-    //By default, is left direction
-    Direction direction  = Left;
-
-    while (velocity == 0) { //If a user of the function used 0 for the value of velocity
-        //Send request --> Output message on displays + Input from devices
-        //Wait while a user input a number
-
-        //mockup {
-        int16_t valueFromUser = 69;
-        velocity = valueFromUser;
-        // }
+    
+    if (leftDistance < rightDistance) {
+        velocity = -velocity; //Change direction if the left edge is closer
     }
 
-    uint64_t leftDistance  = leftSonic->ping_cm(); //Get the distance to the left edge
-    uint64_t rightDistance = rightSonic->ping_cm(); //Get the distance to the right edge
-
-    if (rightDistance < leftDistance) direction = Right; //Change direction if the right edge is closer
-
-    if (direction == Left) velocity = -velocity;
     exec_code = Execute(new ToEdgeMessage(&velocity)); //Make a move to the chosen edge
 
     return exec_code;
