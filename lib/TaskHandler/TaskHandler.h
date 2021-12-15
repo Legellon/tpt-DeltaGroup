@@ -7,52 +7,57 @@
 
 #include <State.h>
 #include <NewPing.h>
+#include <Stepper.h>
+#include <LedControl.h>
 
-#define MAX_ARGS_LENGTH 10
+#include <InterfaceController.h>
 
-typedef enum: uint8_t {
+#define MAX_ARGS 10
+
+#define STEPS_PER_REV 200
+
+typedef enum {
     Successful, Failure,
-} UnsafeTask;
+} Executable;
 
-typedef enum: uint8_t {
-    Left, Right, Unknown
+typedef enum {
+    UnknownDirection,
+    Left, Right,
 } Direction;
+
 
 class ExecutionMessage {
 public:
-    TaskType type;
+    Task task;
 
 protected:
-    void* args[MAX_ARGS_LENGTH];
-};
-
-class ToNearEdgeMessage : public ExecutionMessage {
-public:
-    explicit ToNearEdgeMessage(uint16_t* velocity) : ExecutionMessage() {
-        type = TaskType::ToNearEdge;
-        args[0] = velocity;
-    }
-
-    uint16_t velocity() {
-        return *((uint16_t *)(args[0]));
-    }
+    void* args[MAX_ARGS];
 };
 
 class ToEdgeMessage : public ExecutionMessage {
 public:
-    ToEdgeMessage(uint16_t* velocity, Direction* direction) : ExecutionMessage() {
-        type = TaskType::ToEdge;
-        args[0] = velocity;
-        args[1] = direction;
-    }
+    explicit ToEdgeMessage(int16_t* velocity = new int16_t) : ExecutionMessage() {
+        task = ::ToEdge;
 
-    uint16_t velocity() {
-        return *((uint16_t *)(args[0]));
+        args[velocityPos] = velocity;
     }
+    int16_t* velocity() { return static_cast<int16_t *>(args[velocityPos]); }
 
-    Direction direction() {
-        return *((Direction *)(args[1]));
+private:
+    static const uint8_t velocityPos = 0;
+};
+
+class ToNearEdgeMessage : public ExecutionMessage {
+public:
+    explicit ToNearEdgeMessage(int16_t* velocity = new int16_t) : ExecutionMessage() {
+        task = ::ToNearEdge;
+
+        args[velocityPos] = velocity;
     }
+    int16_t* velocity() { return static_cast<int16_t *>(args[velocityPos]); }
+
+private:
+    static const uint8_t velocityPos = 0;
 };
 
 
@@ -62,17 +67,20 @@ public:
     ~TaskHandler();
 
     void init();
-    UnsafeTask Execute(ExecutionMessage* message);
+    Executable Execute(ExecutionMessage* message);
 
 private:
     uint64_t startTime{};
 
     State* globalState;
-    NewPing* ls;
-    NewPing* rs;
+    InterfaceController ui;
 
-    UnsafeTask ToNearEdge(uint16_t velocity = 0);
-    UnsafeTask ToEdge(uint16_t velocity, Direction direction);
+    NewPing* leftSonic;
+    NewPing* rightSonic;
+    Stepper* stepper;
+
+    Executable ToNearEdge(int16_t velocity);
+    Executable ToEdge(int16_t velocity);
 };
 
 #endif //PHOTOSLIDER_TASKHANDLER_H

@@ -7,21 +7,21 @@
 
 #include <Arduino.h>
 
-typedef enum: uint8_t {
-    Released, ToNearEdge, ToEdge, Error
-} TaskType;
+typedef enum {
+    Released, ToNearEdge, ToEdge, ErrorHandle
+} Task;
 
 class State {
 public:
     State();
 
-    TaskType current;
+    Task current;
 
-    void Take(TaskType task);
+    void Take(Task task);
     void Release();
 
 private:
-    TaskType previous;
+    Task previous;
 };
 
 #endif //PHOTOSLIDER_STATE_H

@@ -9,13 +9,13 @@ State::State() {
     previous = current;
 }
 
-void State::Take(TaskType task) {
+void State::Take(Task task) {
     previous = current;
     current = task;
 }
 
 void State::Release() {
-    TaskType mem = current;
+    Task mem = current;
     current = previous;
     previous = mem;
 }
