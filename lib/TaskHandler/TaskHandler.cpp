@@ -61,8 +61,8 @@ Executable TaskHandler::ToEdge(int16_t velocity) {
             : velocity < 0 ? Left
             : Right;
 
-    if (direction != UnknownDirection) {
-        while (direction != UnknownDirection) {
+    if (direction == UnknownDirection) {
+        while (direction == UnknownDirection) {
             char key = ui.GetKey();
             direction =
                     key == '1' ? Right
@@ -70,12 +70,12 @@ Executable TaskHandler::ToEdge(int16_t velocity) {
                     : UnknownDirection;
         }
 
-        while (velocity != 0) {
+        while (velocity == 0) {
 //            velocity = ui.GetNumber();
             velocity = STEPS_PER_REV; //mockup
         }
 
-        velocity = direction == Left ? -abs(velocity): abs(velocity);
+        velocity = direction == Left ? -abs(velocity) : abs(velocity);
     }
 
     workingSonic = direction == Left ? leftSonic : rightSonic;
