@@ -1,6 +1,7 @@
 //---CoreLibs---
 #include <Arduino.h>
 #include <TaskHandler.h>
+#include <InterfaceController.h>
 //I2C / TWI
 #include <Wire.h>
 //Timing libs for Protothreads(A tool for imitation of something like multitasking)
@@ -8,8 +9,6 @@
 #include <LightChrono.h>
 
 //---PeripheryLibs---
-//Displays
-#include <LiquidCrystal_I2C.h>  //For the adapter to LCD
 //Input devices
 #include <Keypad.h>
 #include <IRremote.h>
@@ -49,11 +48,11 @@ static byte rowPins[KEYPAD_ROWS] { 23, 25, 27, 29 };                            
 static byte colPins[KEYPAD_COLS] { 31, 33, 35, 37 };                            //The col pin outs of the keypad
 
 Keypad KP(makeKeymap(keys), rowPins, colPins, KEYPAD_ROWS, KEYPAD_COLS);        //Keypad
-LiquidCrystal_I2C LCD(0x27, 16, 2);                                             //LCD display
 NewPing LS(TRIG_PIN_L, ECHO_PIN_L);                                             //Left ultrasonic
 NewPing RS(TRIG_PIN_R, ECHO_PIN_R);                                             //Right ultrasonic
 
 TaskHandler Master(&LS, &RS);
+InterfaceController IC;
 
 void setup() {
   // put your setup code here, to run once:
@@ -67,13 +66,11 @@ void setup() {
   pinMode(TRIG_PIN_R, OUTPUT);
   pinMode(ECHO_PIN_R, INPUT);
 
-  //init LCD
-  LCD.init();
-  LCD.backlight();
-
   Master.init();
+  IC.init();
 }
 
 void loop() {
 //    Master.Execute();
+    IC.DisplayLCDHeader(MovingPlatform);
 }
