@@ -81,11 +81,15 @@ Executable TaskHandler::ToEdge(int16_t velocity) {
 
     workingSonic = direction == Left ? leftSonic : rightSonic;
 
+    //LCD сообщение, которое отображает направление движения тележки
+
     uint16_t distance;
     do { //Movement
         stepper->step(velocity);
         distance = workingSonic->ping_cm();
     } while (distance >= 10);
+
+    //Отчистить LCD экран
 
     return exec_code;
 }
