@@ -4,12 +4,13 @@
 
 #include "TaskHandler.h"
 
-TaskHandler::TaskHandler(NewPing* _leftSonic, NewPing* _rightSonic) {
+TaskHandler::TaskHandler(NewPing* _leftSonic, NewPing* _rightSonic, LiquidCrystal_I2C* _lcd) {
     globalState = new State;
 
     leftSonic   = _leftSonic;
     rightSonic  = _rightSonic;
     stepper     = new Stepper(200, 4, 5, 6, 7);
+    lcd         = _lcd;
 }
 
 TaskHandler::~TaskHandler() {
@@ -20,8 +21,8 @@ TaskHandler::~TaskHandler() {
 void TaskHandler::init() {
     startTime = millis();
     stepper->setSpeed(60);
-
-    ui.init();
+    lcd->init();
+    lcd->backlight();
 }
 
 Executable TaskHandler::Execute(ExecutionMessage* message) {

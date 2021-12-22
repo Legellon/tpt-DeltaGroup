@@ -63,7 +63,7 @@ private:
 
 class TaskHandler {
 public:
-    TaskHandler(NewPing* leftSonar, NewPing* rightSonar);
+    TaskHandler(NewPing* _leftSonic, NewPing* _rightSonic, LiquidCrystal_I2C* lcd);
     ~TaskHandler();
 
     void init();
@@ -73,11 +73,11 @@ private:
     uint64_t startTime{};
 
     State* globalState;
-    InterfaceController ui;
 
     NewPing* leftSonic;
     NewPing* rightSonic;
     Stepper* stepper;
+    LiquidCrystal_I2C* lcd;
 
     Executable ToNearEdge(int16_t velocity);
     Executable ToEdge(int16_t velocity);
