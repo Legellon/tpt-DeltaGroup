@@ -10,7 +10,6 @@ TaskHandler::TaskHandler(NewPing* _leftSonic, NewPing* _rightSonic, LiquidCrysta
     leftSonic   = _leftSonic;
     rightSonic  = _rightSonic;
     stepper     = new Stepper(200, 4, 5, 6, 7);
-    lcd         = _lcd;
 }
 
 TaskHandler::~TaskHandler() {
@@ -21,8 +20,7 @@ TaskHandler::~TaskHandler() {
 void TaskHandler::init() {
     startTime = millis();
     stepper->setSpeed(60);
-    lcd->init();
-    lcd->backlight();
+    ui.init();
 }
 
 Executable TaskHandler::Execute(ExecutionMessage* message) {

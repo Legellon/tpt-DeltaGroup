@@ -33,6 +33,7 @@ public:
 
     void init();
     void DisplayHeader(MessageID messageId);
+    void OutputString(const char* string, uint8_t line);
     int GetNumber();
     char GetKey();
 
@@ -46,7 +47,6 @@ private:
     LiquidCrystal_I2C* lcd;
     Keypad* kp;
 
-    void OutputString(const char* string, uint8_t line);
     int MoveStringForward(char* string, uint8_t line);
 };
 
