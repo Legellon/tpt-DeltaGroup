@@ -61,7 +61,8 @@ Executable TaskHandler::ToEdge(int16_t velocity) {
             : velocity < 0 ? Left
             : Right;
 
-    if (direction == UnknownDirection) {
+    if (direction == UnknownDirection) 
+    {
         while (direction == UnknownDirection) {
             char key = ui.GetKey();
             direction =
@@ -96,10 +97,8 @@ Executable TaskHandler::ToNearEdge(int16_t velocity) {
     uint16_t rightDistance = rightSonic->ping_cm(); //Get the distance to the right edge
 
     velocity = abs(velocity);
-    
-    if (leftDistance < rightDistance) {
-        velocity = -velocity; //Change direction if the left edge is closer
-    }
+
+    if (leftDistance < rightDistance) velocity = -velocity;
 
     exec_code = Execute(new ToEdgeMessage(&velocity)); //Make a move to the chosen edge
 
