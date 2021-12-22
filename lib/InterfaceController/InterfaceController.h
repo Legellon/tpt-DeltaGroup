@@ -37,6 +37,8 @@ public:
     int GetNumber();
     char GetKey();
 
+    void ClearLcd();
+
 private:
     const char* lcdMessages[2] = {
             "Input a velocity of the platform:",

@@ -53,3 +53,7 @@ char InterfaceController::GetKey() {
     }
     return key;
 }
+
+void InterfaceController::ClearLcd() {
+    lcd->clear();
+}

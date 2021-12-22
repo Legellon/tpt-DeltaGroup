@@ -81,6 +81,7 @@ Executable TaskHandler::ToEdge(int16_t velocity) {
     workingSonic = direction == Left ? leftSonic : rightSonic;
 
     //LCD сообщение, которое отображает направление движения тележки
+    ui.OutputString(direction == Left ? "Moving left" : "Moving right", 0);
 
     uint16_t distance;
     do { //Movement
@@ -89,6 +90,7 @@ Executable TaskHandler::ToEdge(int16_t velocity) {
     } while (distance >= 10);
 
     //Отчистить LCD экран
+    ui.ClearLcd();
 
     return exec_code;
 }
