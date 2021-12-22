@@ -63,7 +63,7 @@ private:
 
 class TaskHandler {
 public:
-    TaskHandler(NewPing* _leftSonic, NewPing* _rightSonic, LiquidCrystal_I2C* lcd);
+    TaskHandler(NewPing* _leftSonic, NewPing* _rightSonic);
     ~TaskHandler();
 
     void init();

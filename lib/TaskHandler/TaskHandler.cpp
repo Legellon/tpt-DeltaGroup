@@ -4,7 +4,7 @@
 
 #include "TaskHandler.h"
 
-TaskHandler::TaskHandler(NewPing* _leftSonic, NewPing* _rightSonic, LiquidCrystal_I2C* _lcd) {
+TaskHandler::TaskHandler(NewPing* _leftSonic, NewPing* _rightSonic) {
     globalState = new State;
 
     leftSonic   = _leftSonic;
